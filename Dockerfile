@@ -1,11 +1,10 @@
-# Intentionally outdated stack for security scanning / training demos:
-# - Node 14 is end-of-life; the Debian Bullseye base accumulates unfixed OS CVEs over time.
-# - Pin older app dependencies so scanners have something to report.
-FROM node:14-bullseye
+# Node 22 on Debian Bullseye for a current LTS runtime with a stable glibc base.
+# App still pins an older Express release for dependency-focused security demos.
+FROM node:22-bullseye
 
 LABEL org.opencontainers.image.title="docker-hub-demo"
-LABEL org.opencontainers.image.description="Demo app on EOL Node (security tooling workshops)"
-LABEL org.opencontainers.image.version="1.1.0"
+LABEL org.opencontainers.image.description="Demo HTTP app for container / Docker Hub and security tooling workshops"
+LABEL org.opencontainers.image.version="1.2.0"
 
 WORKDIR /app
 
@@ -16,7 +15,7 @@ RUN npm install --omit=dev --no-audit --no-fund
 COPY server.js ./
 
 ENV NODE_ENV=production \
-    APP_VERSION=1.1.0 \
+    APP_VERSION=1.2.0 \
     PORT=3000
 
 EXPOSE 3000

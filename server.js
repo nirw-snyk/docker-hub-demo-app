@@ -4,7 +4,7 @@ const express = require('express');
 
 const app = express();
 const port = Number(process.env.PORT) || 3000;
-const appVersion = process.env.APP_VERSION || '1.1.0';
+const appVersion = process.env.APP_VERSION || '1.2.0';
 
 app.disable('x-powered-by');
 
@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
 <body>
   <h1>docker-hub-demo</h1>
   <p>App version: <strong>${escapeHtml(appVersion)}</strong></p>
-  <p>This image uses an end-of-life Node runtime and older dependencies on purpose for security tooling demos.</p>
+  <p>This image runs Node 22 on Bullseye; Express is pinned to an older release on purpose for dependency-focused security demos.</p>
 </body>
 </html>`
   );
